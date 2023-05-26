@@ -1,0 +1,69 @@
+﻿@model Courrier.Models.Courriers
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Courrier</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Réferences" class="control-label"></label>
+                <input asp-for="Réferences" class="form-control" />
+                <span asp-validation-for="Réferences" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Expediteur" class="control-label"></label>
+                <input asp-for="Expediteur" class="form-control" />
+                <span asp-validation-for="Expediteur" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Objet" class="control-label"></label>
+                <input asp-for="Objet" class="form-control" />
+                <span asp-validation-for="Objet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Commentaire" class="control-label"></label>
+                <input asp-for="Commentaire" class="form-control" />
+                <span asp-validation-for="Commentaire" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoursierId" class="control-label"></label>
+                <select asp-for="CoursierId" class="form-control" asp-items="ViewBag.CoursierId"></select>
+                <span asp-validation-for="CoursierId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReceptionisteId" class="control-label"></label>
+                <select asp-for="ReceptionisteId" class="form-control" asp-items="ViewBag.ReceptionisteId"></select>
+                <span asp-validation-for="ReceptionisteId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FlagId" class="control-label"></label>
+                <select asp-for="FlagId" class="form-control" asp-items="ViewBag.FlagId"></select>
+                <span asp-validation-for="FlagId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StatusId" class="control-label"></label>
+                <select asp-for="StatusId" class="form-control" asp-items="ViewBag.StatusId"></select>
+                <span asp-validation-for="StatusId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
