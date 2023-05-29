@@ -82,9 +82,42 @@
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-action="ListCourrierOfCoursier" asp-route-coursierId="@item.CoursierId">Voir Coursier</a> |
+                <a asp-action="ListCourrierOfCoursier" asp-route-receptionisteId="@item.ReceptionisteId">Voir Receptioniste</a>|
+                <a asp-action="Index" asp-controller="MouvementCourriers">Voir Mouvement</a>
             </td>
         </tr>
 }
+        <nav aria-label="...">
+            <ul class="pagination">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1">Previous</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="@Url.ActionLink("Index","Courriers",
+                    new {
+                        take = 1,
+                            skip = 0
+                        })">
+                        1
+                    </a>
+                </li>
+                <li class="page-item active">
+                    <a class="page-link" href="@Url.ActionLink("Index","Courriers",
+                    new {
+                        take = 2,
+                            skip = (0+2)
+                        })">
+                        1
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                </li>
+            </ul>
+        </nav>
+
     </tbody>
 </table>

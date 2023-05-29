@@ -9,57 +9,109 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = Courrier
 build_property.RootNamespace = Courrier
-build_property.ProjectDir = D:\Dossier_asa\M2\ProjetM2\Projet_Naina\Courrier\Courrier\
+build_property.ProjectDir = D:\M2\ProjetCoreNaina\Courrier\Courrier\
 build_property.RazorLangVersion = 7.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = D:\Dossier_asa\M2\ProjetM2\Projet_Naina\Courrier\Courrier
+build_property.MSBuildProjectDirectory = D:\M2\ProjetCoreNaina\Courrier\Courrier
 build_property._RazorSourceGeneratorDebug = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Courriers/Create.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Courriers/Delete.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Courriers/Details.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Courriers/Edit.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Courriers/Index.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/EditStatus.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXEVkaXRTdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Home/Index.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/IndexPaginate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXEluZGV4UGFnaW5hdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Courriers/ListCourrierOfCoursier.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ291cnJpZXJzXExpc3RDb3Vycmllck9mQ291cnNpZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Home/Privacy.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Shared/Error.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Login/IndexCoursier.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXhDb3Vyc2llci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Login/IndexExpediteur.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXhFeHBlZGl0ZXVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Login/IndexReceptioniste.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXhSZWNlcHRpb25pc3RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/MouvementCourriers/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW91dmVtZW50Q291cnJpZXJzXENyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/MouvementCourriers/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW91dmVtZW50Q291cnJpZXJzXERlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/MouvementCourriers/DemoViewAsPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW91dmVtZW50Q291cnJpZXJzXERlbW9WaWV3QXNQREYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/MouvementCourriers/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW91dmVtZW50Q291cnJpZXJzXERldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/MouvementCourriers/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW91dmVtZW50Q291cnJpZXJzXEVkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/MouvementCourriers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW91dmVtZW50Q291cnJpZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/_ViewImports.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/_ViewStart.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[D:/Dossier_asa/M2/ProjetM2/Projet_Naina/Courrier/Courrier/Views/Shared/_Layout.cshtml]
+[D:/M2/ProjetCoreNaina/Courrier/Courrier/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-zimlsq6271

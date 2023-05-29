@@ -10,7 +10,8 @@ namespace Courrier.Data.TypeConfiguration
         {
             builder.ToTable("Coursier");
             builder.HasKey("Id");
-            builder.Property(x => x.Id).ValueGeneratedOnAdd();                      
+            builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.HasMany(x => x.MouvementCourriers).WithOne(x => x.Coursier);
         }
     }
 }

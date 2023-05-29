@@ -12,6 +12,7 @@ namespace Courrier.Data.TypeConfiguration
             builder.HasKey("Id");
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
             builder.HasMany(x => x.CourrierDestinataires).WithOne(x => x.Courrier);
+            builder.HasMany(x => x.MouvementCourriers).WithOne(x => x.Courriers);
 
             builder.HasOne(x => x.Coursier).WithMany(x => x.Courriers).HasForeignKey(x => x.CoursierId);
             builder.HasOne(x => x.Receptioniste).WithMany(x => x.Courriers).HasForeignKey(x => x.ReceptionisteId);

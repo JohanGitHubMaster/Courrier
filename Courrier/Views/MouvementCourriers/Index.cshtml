@@ -1,0 +1,87 @@
+﻿@model IEnumerable<Courrier.Models.MouvementCourrier>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<div>
+    <h4>MouvementCourrier</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => Model.First().Status.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => Model.First().DatedeMouvement)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => Model.First().DatedeMouvement)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => Model.First().Receptioniste)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => Model.First().Courriers.Receptioniste.Nom)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => Model.First().Courriers)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => Model.First().Courriers.Id)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => Model.First().Coursier)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => Model.First().Courriers.Coursier.Nom)
+        </dd>
+    </dl>
+</div>
+<div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DatedeMouvement)
+            </th>
+  
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DatedeMouvement)
+            </td>
+           
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        
+                        
+            </td>
+        </tr>
+}
+            
+    </tbody>
+</table>
+    <a class="btn btn-info" asp-action="DemoViewAsPDF" asp-controller="MouvementCourriers" asp-route-id="@Model.First().Courriers.Id">Load to PDF</a>

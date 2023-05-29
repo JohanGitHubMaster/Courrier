@@ -11,6 +11,7 @@ namespace Courrier.Data.TypeConfiguration
             builder.ToTable("Receptioniste");
             builder.HasKey("Id");
             builder.Property(x => x.Id).ValueGeneratedOnAdd();
+            builder.HasMany(x => x.MouvementCourriers).WithOne(x => x.Receptioniste);
         }
     }
 }

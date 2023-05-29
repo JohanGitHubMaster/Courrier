@@ -6,35 +6,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Courrier.Migrations
 {
     /// <inheritdoc />
-    public partial class DebugDatabase : Migration
+    public partial class Rating : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
-            //migrationBuilder.DropTable(
-            //    name: "CourrierDestinataire");
-
-            //migrationBuilder.DropTable(
-            //    name: "MouvementCourrier");
-
-            //migrationBuilder.DropTable(
-            //    name: "Courrier");
-
-            //migrationBuilder.DropTable(
-            //    name: "Coursier");
-
-            //migrationBuilder.DropTable(
-            //    name: "Destinataire");
-
-            //migrationBuilder.DropTable(
-            //    name: "Flag");
-
-            //migrationBuilder.DropTable(
-            //    name: "Receptioniste");
-
-            //migrationBuilder.DropTable(
-            //    name: "Status");
+           // Down(migrationBuilder);
 
             migrationBuilder.CreateTable(
                 name: "Coursier",
@@ -152,37 +129,6 @@ namespace Courrier.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "MouvementCourrier",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StatusId = table.Column<int>(type: "int", nullable: true),
-                    DestinataireId = table.Column<int>(type: "int", nullable: true),
-                    ReceptionisteId = table.Column<int>(type: "int", nullable: true),
-                    DatedeMouvement = table.Column<DateTime>(type: "datetime2", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_MouvementCourrier", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_MouvementCourrier_Destinataire_DestinataireId",
-                        column: x => x.DestinataireId,
-                        principalTable: "Destinataire",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_MouvementCourrier_Receptioniste_ReceptionisteId",
-                        column: x => x.ReceptionisteId,
-                        principalTable: "Receptioniste",
-                        principalColumn: "Id");
-                    table.ForeignKey(
-                        name: "FK_MouvementCourrier_Status_StatusId",
-                        column: x => x.StatusId,
-                        principalTable: "Status",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
                 name: "CourrierDestinataire",
                 columns: table => new
                 {
@@ -206,6 +152,44 @@ namespace Courrier.Migrations
                         principalTable: "Destinataire",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "MouvementCourrier",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    CoursierId = table.Column<int>(type: "int", nullable: true),
+                    CourrierId = table.Column<int>(type: "int", nullable: true),
+                    StatusId = table.Column<int>(type: "int", nullable: true),
+                    ReceptionisteId = table.Column<int>(type: "int", nullable: true),
+                    DatedeMouvement = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CourriersId = table.Column<int>(type: "int", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_MouvementCourrier", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_MouvementCourrier_Courrier_CourriersId",
+                        column: x => x.CourriersId,
+                        principalTable: "Courrier",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MouvementCourrier_Coursier_CoursierId",
+                        column: x => x.CoursierId,
+                        principalTable: "Coursier",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MouvementCourrier_Receptioniste_ReceptionisteId",
+                        column: x => x.ReceptionisteId,
+                        principalTable: "Receptioniste",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_MouvementCourrier_Status_StatusId",
+                        column: x => x.StatusId,
+                        principalTable: "Status",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -244,9 +228,14 @@ namespace Courrier.Migrations
                 column: "DestinataireId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_MouvementCourrier_DestinataireId",
+                name: "IX_MouvementCourrier_CourriersId",
                 table: "MouvementCourrier",
-                column: "DestinataireId");
+                column: "CourriersId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_MouvementCourrier_CoursierId",
+                table: "MouvementCourrier",
+                column: "CoursierId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_MouvementCourrier_ReceptionisteId",

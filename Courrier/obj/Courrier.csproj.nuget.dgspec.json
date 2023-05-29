@@ -1,40 +1,28 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Dossier_asa\\M2\\ProjetM2\\Projet_Naina\\Courrier\\Courrier\\Courrier.csproj": {}
+    "D:\\M2\\ProjetCoreNaina\\Courrier\\Courrier\\Courrier.csproj": {}
   },
   "projects": {
-    "D:\\Dossier_asa\\M2\\ProjetM2\\Projet_Naina\\Courrier\\Courrier\\Courrier.csproj": {
+    "D:\\M2\\ProjetCoreNaina\\Courrier\\Courrier\\Courrier.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Dossier_asa\\M2\\ProjetM2\\Projet_Naina\\Courrier\\Courrier\\Courrier.csproj",
+        "projectUniqueName": "D:\\M2\\ProjetCoreNaina\\Courrier\\Courrier\\Courrier.csproj",
         "projectName": "Courrier",
-        "projectPath": "D:\\Dossier_asa\\M2\\ProjetM2\\Projet_Naina\\Courrier\\Courrier\\Courrier.csproj",
-        "packagesPath": "C:\\Users\\johan\\.nuget\\packages\\",
-        "outputPath": "D:\\Dossier_asa\\M2\\ProjetM2\\Projet_Naina\\Courrier\\Courrier\\obj\\",
+        "projectPath": "D:\\M2\\ProjetCoreNaina\\Courrier\\Courrier\\Courrier.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "D:\\M2\\ProjetCoreNaina\\Courrier\\Courrier\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\ComponentOne\\WPF Edition\\bin\\v5\\",
-          "C:\\Program Files (x86)\\ComponentOne\\WinForms Edition\\bin\\v5\\",
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Microsoft\\Xamarin\\NuGet\\",
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\johan\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\ComponentOne.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\ComponentOne\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
-          "http://nuget.grapecity.com/nuget": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -74,6 +62,10 @@
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[7.0.6, )"
+            },
+            "Rotativa.AspNetCore": {
+              "target": "Package",
+              "version": "[1.2.0, )"
             }
           },
           "imports": [

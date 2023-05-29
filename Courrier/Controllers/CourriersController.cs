@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Courrier.Data;
 using Courrier.Models;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace Courrier.Controllers
 {
@@ -29,6 +30,34 @@ namespace Courrier.Controllers
                 .Include(c=>c.CourrierDestinataires)!.ThenInclude(c=>c.Destinataire);
 
             return View(await courrierContext.ToListAsync());
+        }
+        public async Task<IActionResult> IndexPaginate(string? searchstring, string? status,string? flags,  int take = 2, int skip = 0)
+        {           
+            ViewData["Status"] = new SelectList(_context.Status, "Id", "Type");
+            ViewData["Flag"] = new SelectList(_context.Flag, "Id", "Type");
+
+
+            var courrierDestinataire = new CourriersDestinataires();
+
+            var courrierContext = _context.Courrier.Include(c => c.Coursier).Include(c => c.Flag).Include(c => c.Receptioniste).Include(c => c.Status)
+                .Include(c => c.CourrierDestinataires)!.ThenInclude(c => c.Destinataire).Where(x=>x==x);
+
+            if(!String.IsNullOrEmpty(searchstring))
+            courrierContext = courrierContext.Where(x => x.Réferences!.Contains(searchstring) || x.Objet!.Contains(searchstring) || x.Expediteur!.Contains(searchstring));
+
+            if(!String.IsNullOrEmpty(status))
+                courrierContext = courrierContext.Where(x => x.StatusId==Int32.Parse(status));
+
+            if(!String.IsNullOrEmpty(flags))
+                courrierContext = courrierContext.Where(x => x.FlagId == Int32.Parse(flags));
+
+            double TotalPage = await _context.Courrier.CountAsync() / (double)take;
+            if (TotalPage % 2 == 0)
+                ViewBag.TotalPage = (int)TotalPage;
+            else
+                ViewBag.TotalPage = (int)TotalPage + 1;
+
+            return View(await courrierContext.Skip(skip).Take(take).ToListAsync());
         }
 
         // GET: Courriers/Details/5
@@ -83,7 +112,7 @@ namespace Courrier.Controllers
                 }
                 _context.Add(Instancecourrier);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexPaginate));
             }
             ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Id", courrier.courriers!.CoursierId);
             ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Id", courrier!.courriers.FlagId);
@@ -144,7 +173,7 @@ namespace Courrier.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(IndexPaginate));
             }
             ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Id", courrier.CoursierId);
             ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Id", courrier.FlagId);
@@ -191,12 +220,120 @@ namespace Courrier.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexPaginate));
         }
+
+        public async Task<IActionResult> ListCourrierOfCoursier(int?coursierId,int? receptionisteId)
+        {
+
+            ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Nom");
+            ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Type");
+            ViewData["ReceptionisteId"] = new SelectList(_context.Receptioniste, "Id", "Nom");
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Type");
+            ViewData["DestinataireId"] = new SelectList(_context.Destinataire, "Id", "Nom");
+            ViewData["isReceptioniste"]=null;
+            var courrierDestinataire = new CourriersDestinataires();
+            IIncludableQueryable<Courriers, Destinataire?> courrierContext;
+            if (receptionisteId != null)
+            {
+                TempData["isReceptioniste"] = true;
+                courrierContext = _context.Courrier.Where(x => x.ReceptionisteId == receptionisteId).Include(c => c.Coursier).Include(c => c.Flag).Include(c => c.Receptioniste).Include(c => c.Status).Include(c => c.CourrierDestinataires)!.ThenInclude(c => c.Destinataire);
+            }
+            else
+            {
+                TempData["isReceptioniste"] = false;
+                courrierContext = _context.Courrier.Where(x => x.CoursierId == coursierId).Include(c => c.Coursier).Include(c => c.Flag).Include(c => c.Receptioniste).Include(c => c.Status).Include(c => c.CourrierDestinataires)!.ThenInclude(c => c.Destinataire);
+            }
+            return View(await courrierContext.ToListAsync());
+        }
+
+
+
+        public async Task<IActionResult> EditStatus(int? id)
+        {
+         
+            var courrierDestinataire = new CourriersDestinataires();
+            
+
+            var courrierContext = await _context.Courrier.FindAsync(id);
+            ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Nom", courrierContext.Id);
+            ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Type", courrierContext.FlagId);
+            ViewData["ReceptionisteId"] = new SelectList(_context.Receptioniste, "Id", "Nom", courrierContext.ReceptionisteId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Type", courrierContext.StatusId);
+
+            if (!(Boolean)TempData["isReceptioniste"] && courrierContext.StatusId == 2)
+            {
+                TempData["isReceptioniste"] = false;
+                return View(courrierContext);
+            }
+            else if((Boolean)TempData["isReceptioniste"] && courrierContext.StatusId == 1)
+            {
+                TempData["isReceptioniste"] = true;
+                return View(courrierContext);
+
+            }
+            if (!(Boolean)TempData["isReceptioniste"])
+                return RedirectToAction(nameof(ListCourrierOfCoursier), new { coursierId = courrierContext.CoursierId });
+            else
+                return RedirectToAction(nameof(ListCourrierOfCoursier), new { receptionisteId = courrierContext.ReceptionisteId });
+
+            //return View(courrierContext);
+        }
+
+        public async Task<IActionResult> EditMouvement(Courriers courrier)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                     _context.Update(courrier);
+                   
+                    courrier.MouvementCourriers = new List<MouvementCourrier>();
+                    if (!(Boolean)TempData["isReceptioniste"])
+                    {
+                        courrier.StatusId = 1;
+                        
+                        courrier.MouvementCourriers.Add(new MouvementCourrier { CoursierId = courrier.CoursierId, DatedeMouvement = DateTime.Now, StatusId = courrier.StatusId });
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(ListCourrierOfCoursier), new { coursierId = courrier.CoursierId });
+                    }
+                    else if((Boolean)TempData["isReceptioniste"])
+                    {
+                        courrier.StatusId = 3;
+                        courrier.MouvementCourriers.Add(new MouvementCourrier { ReceptionisteId = courrier.ReceptionisteId, DatedeMouvement = DateTime.Now, StatusId = courrier.StatusId });
+                        await _context.SaveChangesAsync();
+                        return RedirectToAction(nameof(ListCourrierOfCoursier), new { receptionisteId = courrier.ReceptionisteId });
+                    }
+                    
+                    return RedirectToAction(nameof(IndexPaginate));
+                }
+                catch (DbUpdateConcurrencyException)
+                {
+                    if (!CourrierExists(courrier.Id))
+                    {
+                        return NotFound();
+                    }
+                    else
+                    {
+                        throw;
+                    }
+                }
+                
+            }
+            ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Id", courrier.CoursierId);
+            ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Id", courrier.FlagId);
+            ViewData["ReceptionisteId"] = new SelectList(_context.Receptioniste, "Id", "Id", courrier.ReceptionisteId);
+            ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id", courrier.StatusId);
+            return View(EditStatus);
+        }
+
+
 
         private bool CourrierExists(int id)
         {
           return (_context.Courrier?.Any(e => e.Id == id)).GetValueOrDefault();
         }
+
+        
     }
 }

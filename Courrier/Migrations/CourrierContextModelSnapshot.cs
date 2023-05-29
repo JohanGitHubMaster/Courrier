@@ -151,11 +151,17 @@ namespace Courrier.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<int?>("CourrierId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CourriersId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("CoursierId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("DatedeMouvement")
                         .HasColumnType("datetime2");
-
-                    b.Property<int?>("DestinataireId")
-                        .HasColumnType("int");
 
                     b.Property<int?>("ReceptionisteId")
                         .HasColumnType("int");
@@ -165,13 +171,15 @@ namespace Courrier.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DestinataireId");
+                    b.HasIndex("CourriersId");
+
+                    b.HasIndex("CoursierId");
 
                     b.HasIndex("ReceptionisteId");
 
                     b.HasIndex("StatusId");
 
-                    b.ToTable("MouvementCourrier");
+                    b.ToTable("MouvementCourrier", (string)null);
                 });
 
             modelBuilder.Entity("Courrier.Models.Receptioniste", b =>
@@ -266,19 +274,25 @@ namespace Courrier.Migrations
 
             modelBuilder.Entity("Courrier.Models.MouvementCourrier", b =>
                 {
-                    b.HasOne("Courrier.Models.Destinataire", "Destinataire")
-                        .WithMany()
-                        .HasForeignKey("DestinataireId");
+                    b.HasOne("Courrier.Models.Courriers", "Courriers")
+                        .WithMany("MouvementCourriers")
+                        .HasForeignKey("CourriersId");
+
+                    b.HasOne("Courrier.Models.Coursier", "Coursier")
+                        .WithMany("MouvementCourriers")
+                        .HasForeignKey("CoursierId");
 
                     b.HasOne("Courrier.Models.Receptioniste", "Receptioniste")
-                        .WithMany()
+                        .WithMany("MouvementCourriers")
                         .HasForeignKey("ReceptionisteId");
 
                     b.HasOne("Courrier.Models.Status", "Status")
-                        .WithMany()
+                        .WithMany("MouvementCourriers")
                         .HasForeignKey("StatusId");
 
-                    b.Navigation("Destinataire");
+                    b.Navigation("Courriers");
+
+                    b.Navigation("Coursier");
 
                     b.Navigation("Receptioniste");
 
@@ -288,11 +302,15 @@ namespace Courrier.Migrations
             modelBuilder.Entity("Courrier.Models.Courriers", b =>
                 {
                     b.Navigation("CourrierDestinataires");
+
+                    b.Navigation("MouvementCourriers");
                 });
 
             modelBuilder.Entity("Courrier.Models.Coursier", b =>
                 {
                     b.Navigation("Courriers");
+
+                    b.Navigation("MouvementCourriers");
                 });
 
             modelBuilder.Entity("Courrier.Models.Destinataire", b =>
@@ -308,11 +326,15 @@ namespace Courrier.Migrations
             modelBuilder.Entity("Courrier.Models.Receptioniste", b =>
                 {
                     b.Navigation("Courriers");
+
+                    b.Navigation("MouvementCourriers");
                 });
 
             modelBuilder.Entity("Courrier.Models.Status", b =>
                 {
                     b.Navigation("Courriers");
+
+                    b.Navigation("MouvementCourriers");
                 });
 #pragma warning restore 612, 618
         }

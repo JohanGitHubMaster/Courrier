@@ -25,6 +25,8 @@ namespace Courrier.Data
         public DbSet<Receptioniste> Receptioniste { get; set; } = default!;
         public DbSet<Status> Status { get; set; } = default!;
 
+        public DbSet<Flag> Flag { get; set; } = default!;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -34,6 +36,7 @@ namespace Courrier.Data
             modelBuilder.ApplyConfiguration(new FlagTypeConfiguration());
             modelBuilder.ApplyConfiguration(new StatusTypeConfiguration());
             modelBuilder.ApplyConfiguration(new ReceptionisteTypeConfiguration());
+            modelBuilder.ApplyConfiguration(new MouvementCourrierTypeConfiguration());
         }
 
     }
