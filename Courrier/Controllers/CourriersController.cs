@@ -104,9 +104,9 @@ namespace Courrier.Controllers
             if (ModelState.IsValid)
             {
                 var Instancecourrier = courrier.courriers;
-                Instancecourrier.CourrierDestinataires = new List<CourrierDestinataire>();
+                Instancecourrier!.CourrierDestinataires = new List<CourrierDestinataire>();
                
-                foreach(var iddestinataire in courrier.destinataires)
+                foreach(var iddestinataire in courrier.destinataires!)
                 {
                     Instancecourrier.CourrierDestinataires.Add(new CourrierDestinataire { DestinataireId = iddestinataire });
                 }
@@ -256,23 +256,23 @@ namespace Courrier.Controllers
             
 
             var courrierContext = await _context.Courrier.FindAsync(id);
-            ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Nom", courrierContext.Id);
+            ViewData["CoursierId"] = new SelectList(_context.Coursier, "Id", "Nom", courrierContext!.Id);
             ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Type", courrierContext.FlagId);
             ViewData["ReceptionisteId"] = new SelectList(_context.Receptioniste, "Id", "Nom", courrierContext.ReceptionisteId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Type", courrierContext.StatusId);
 
-            if (!(Boolean)TempData["isReceptioniste"] && courrierContext.StatusId == 2)
+            if (!(Boolean)TempData["isReceptioniste"]! && courrierContext.StatusId == 2)
             {
                 TempData["isReceptioniste"] = false;
                 return View(courrierContext);
             }
-            else if((Boolean)TempData["isReceptioniste"] && courrierContext.StatusId == 1)
+            else if((Boolean)TempData["isReceptioniste"]! && courrierContext.StatusId == 1)
             {
                 TempData["isReceptioniste"] = true;
                 return View(courrierContext);
 
             }
-            if (!(Boolean)TempData["isReceptioniste"])
+            if (!(Boolean)TempData["isReceptioniste"]!)
                 return RedirectToAction(nameof(ListCourrierOfCoursier), new { coursierId = courrierContext.CoursierId });
             else
                 return RedirectToAction(nameof(ListCourrierOfCoursier), new { receptionisteId = courrierContext.ReceptionisteId });
@@ -289,7 +289,7 @@ namespace Courrier.Controllers
                      _context.Update(courrier);
                    
                     courrier.MouvementCourriers = new List<MouvementCourrier>();
-                    if (!(Boolean)TempData["isReceptioniste"])
+                    if (!(Boolean)TempData["isReceptioniste"]!)
                     {
                         courrier.StatusId = 1;
                         
@@ -297,7 +297,7 @@ namespace Courrier.Controllers
                         await _context.SaveChangesAsync();
                         return RedirectToAction(nameof(ListCourrierOfCoursier), new { coursierId = courrier.CoursierId });
                     }
-                    else if((Boolean)TempData["isReceptioniste"])
+                    else if((Boolean)TempData["isReceptioniste"]!)
                     {
                         courrier.StatusId = 3;
                         courrier.MouvementCourriers.Add(new MouvementCourrier { ReceptionisteId = courrier.ReceptionisteId, DatedeMouvement = DateTime.Now, StatusId = courrier.StatusId });
@@ -324,7 +324,7 @@ namespace Courrier.Controllers
             ViewData["FlagId"] = new SelectList(_context.Set<Flag>(), "Id", "Id", courrier.FlagId);
             ViewData["ReceptionisteId"] = new SelectList(_context.Receptioniste, "Id", "Id", courrier.ReceptionisteId);
             ViewData["StatusId"] = new SelectList(_context.Status, "Id", "Id", courrier.StatusId);
-            return View(EditStatus);
+            return View(nameof(EditStatus));
         }
 
 

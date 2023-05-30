@@ -23,7 +23,7 @@ namespace Courrier.Controllers
         // GET: MouvementCourriers
         public async Task<IActionResult> Index(int? id)
         {
-            var courrierContext = _context.MouvementCourrier.Where(x=>x.Courriers.Id == id).Include(m => m.Courriers).Include(m => m.Coursier).Include(m => m.Receptioniste).Include(m => m.Status);
+            var courrierContext = _context.MouvementCourrier.Where(x=>x.Courriers!.Id == id).Include(m => m.Courriers).Include(m => m.Coursier).Include(m => m.Receptioniste).Include(m => m.Status);
             if (courrierContext.Count()<=0) return RedirectToAction("IndexPaginate", "Courriers");
             return View(await courrierContext.ToListAsync());
         }

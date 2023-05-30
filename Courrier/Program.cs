@@ -27,8 +27,8 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-IWebHostEnvironment env = app.Environment;
-RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env);
+//IWebHostEnvironment env = app.Environment;
+//RotativaConfiguration.Setup((Microsoft.AspNetCore.Hosting.IHostingEnvironment)env);
 
 app.MapControllerRoute(
     name: "default",

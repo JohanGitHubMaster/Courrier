@@ -11,7 +11,7 @@ namespace Courrier.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-           // Down(migrationBuilder);
+            Down(migrationBuilder);
 
             migrationBuilder.CreateTable(
                 name: "Coursier",
